@@ -58,25 +58,36 @@
         }
     };
 
+    group.onmessage = function (event) {
+        if (event.data instanceof ArrayBuffer) {
+            addMessageToWindow('Got Image:');
+            addImageToWindow(event.data);
+        } else {
+            addMessageToWindow(`Got Message: ${event.data}`);
+        }
+    };
+
     sendButton.onclick = function (event) {
-        sendMessage(messageInput.value);
+        sendMessage(messageInput.value, 1);
         messageInput.value = "";
     };
 
-    sendImageButton.onclick = function (event) {
-        let file = fileInput.files[0];
-        sendMessage(file);
-        fileInput.value = null;
-    };
-
     function sendMessage(message) {
-        socket.send(message);
+        console.log(message)
+        group.send(message);
         addMessageToWindow("Sent Message: " + message);
     }
 
     function addMessageToWindow(message) {
         messageWindow.innerHTML += `<div>${message}</div>`
     }
+
+
+    sendImageButton.onclick = function (event) {
+        let file = fileInput.files[0];
+        sendMessage(file);
+        fileInput.value = null;
+    };
 
     function addImageToWindow(image) {
         let url = URL.createObjectURL(new Blob([image]));

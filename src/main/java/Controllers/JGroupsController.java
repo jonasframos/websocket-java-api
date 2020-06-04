@@ -4,6 +4,8 @@ import org.jgroups.*;
 import org.jgroups.util.Util;
 
 import javax.websocket.OnMessage;
+import javax.websocket.OnOpen;
+import javax.websocket.Session;
 import javax.websocket.server.ServerEndpoint;
 
 import java.io.*;
@@ -17,6 +19,8 @@ public class JGroupsController implements Receiver {
     JChannel channel;
     final List<String> state = new LinkedList<>();
     private View lastView;
+    private boolean inGroup = false;
+    private Session userSession;
 
     private Optional<Address> getAddress(String name) {
         View view = channel.view();
@@ -66,10 +70,16 @@ public class JGroupsController implements Receiver {
         lastView = newView;
     }
 
-    public void receive(Message msg) {
+    public void receive(Message msg){
 
         String line = msg.getSrc() + ": " + msg.getObject();
         System.out.println(line);
+        try {
+            this.userSession.getBasicRemote().sendText(line);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
         synchronized(state) {
             state.add(line);
         }
@@ -90,7 +100,10 @@ public class JGroupsController implements Receiver {
 
         System.out.println("----------------------------------------------------------------------------------------");
         System.out.println(list.size() + " mensagens no histórico do grupo");
-        list.forEach(System.out::println);
+        for (int i = 0; i < list.size(); i++) {
+            String s = (String) list.get(i);
+            this.userSession.getBasicRemote().sendText(s);
+        }
         System.out.println("----------------------------------------------------------------------------------------");
     }
 
@@ -134,7 +147,6 @@ public class JGroupsController implements Receiver {
         channel.send(msg);
     }
 
-    @OnMessage
     public void connectToGroup(String groupName) throws Exception {
         System.out.println("Conectando...");
         channel = new JChannel().setReceiver(this);
@@ -142,15 +154,39 @@ public class JGroupsController implements Receiver {
         try{
             channel.connect(groupName);
             channel.getState(null, 10000);
+            inGroup = true;
+
             System.out.println("Conectando...");
             System.out.println("Bem-vindo ao grupo!");
-            listening();
+            //listening();
 
         }catch(Exception e){
             System.out.println("Não foi possível conectar ao grupo devido ao erro:\n");
             System.out.println(e);
         }
+
         //channel.disconnect();
+    }
+
+    @OnMessage
+    public String onMessage(String message) throws Exception {
+//        if (!inGroup) {
+//            System.out.println("inGroup");
+//            connectToGroup(message);
+//        } else if(message.startsWith("/RECEIVED")) {
+//            return message;
+//        } else {
+            System.out.println("New Text Message Received");
+            this.sendMessage(message);
+            return message;
+        //}
+        //return "";
+    }
+
+    @OnOpen
+    public void onOpen(Session session) throws Exception {
+        this.userSession = session;
+        connectToGroup("COM242");
     }
 
 }
