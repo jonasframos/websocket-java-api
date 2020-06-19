@@ -1,8 +1,4 @@
-App.java
- App
-WebSocketEndpoint.java
- WebSocketEndpoint
+Controllers/UserGroupsController.java
+ Controllers.UserGroupsController
 Controllers/LoginController.java
  Controllers.LoginController
-Controllers/JGroupsController.java
- Controllers.JGroupsController

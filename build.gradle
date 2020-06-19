@@ -29,6 +29,7 @@ dependencies {
     testCompile 'junit:junit:4.12'
 
     implementation files('/home/jonasramos/Downloads/jgroups-4.2.2.Final.jar')
+    implementation files('/home/jonasramos/Downloads/postgresql-42.2.14.jar')
 }
 
 // In this section you declare where to find the dependencies of your project

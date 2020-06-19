@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
+    <title>Title</title>
     <style>
     .container{
         max-width:1170px; margin:auto;}
@@ -62,7 +64,7 @@
     margin: 0;
     padding: 18px 16px 10px;
     }
-    .inbox_chat {height:100%; overflow-y: scroll;}
+    .inbox_chat {height:90vh; overflow-y: scroll;}
 
     .active_chat{ background:#ebebeb;}
 
@@ -134,7 +136,7 @@
     top: 11px;
     width: 33px;
     }
-    .messaging { padding: 0 0 50px 0; height:100vh}
+    .messaging { padding: 0 0 50px 0;}
     .msg_history {
     height: 516px;
     overflow-y: auto;
@@ -151,8 +153,8 @@
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
     <title>Comunicação Corporativa</title>
-
 </head>
+
 <body>
 <div class="header">
     <nav style="background-color:#525252 !important" class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -199,91 +201,31 @@
     </nav>
 </div>
 <div class="messaging">
-    <div class="inbox_msg">
-        <div class="inbox_people">
-            <div class="headind_srch">
-                <div class="recent_heading">
-                    <h4>Recent</h4>
-                </div>
-                <div class="srch_bar">
-                    <div class="stylish-input-group">
-                        <input type="text" class="search-bar"  placeholder="Search" >
-                        <span class="input-group-addon">
+        <div class="inbox_msg">
+            <div class="inbox_people">
+                <div class="headind_srch">
+                    <div class="recent_heading">
+                        <h4 class="ola">Recent</h4>
+                    </div>
+                    <div class="srch_bar">
+                        <div class="stylish-input-group">
+                            <input type="text" class="search-bar"  placeholder="Search" >
+                            <span class="input-group-addon">
                                 <button type="button"><i class="fa fa-search" aria-hidden="true"></i></button>
                             </span>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div id="chat_list" class="inbox_chat">
-
-            </div>
-        </div>
-        <div class="mesgs">
-            <div class="msg_history">
-                <div id="messages">
+                <div id="chat_list" class="inbox_chat">
 
                 </div>
-<!--                <div class="outgoing_msg">-->
-<!--                    <div class="sent_msg">-->
-<!--                        <p>Test which is a new approach to have all-->
-<!--                            solutions</p>-->
-<!--                        <span class="time_date"> 11:01 AM    |    June 9</span> </div>-->
-<!--                </div>-->
-<!--                <div class="incoming_msg">-->
-<!--                    <div class="incoming_msg_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>-->
-<!--                    <div class="received_msg">-->
-<!--                        <div class="received_withd_msg">-->
-<!--                            <p>Test, which is a new approach to have</p>-->
-<!--                            <span class="time_date"> 11:01 AM    |    Yesterday</span></div>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--                <div class="outgoing_msg">-->
-<!--                    <div class="sent_msg">-->
-<!--                        <p>Apollo University, Delhi, India Test</p>-->
-<!--                        <span class="time_date"> 11:01 AM    |    Today</span> </div>-->
-<!--                </div>-->
-<!--                <div class="incoming_msg">-->
-<!--                    <div class="incoming_msg_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>-->
-<!--                    <div class="received_msg">-->
-<!--                        <div class="received_withd_msg">-->
-<!--                            <p>We work directly with our designers and suppliers,-->
-<!--                                and sell direct to you, which means quality, exclusive-->
-<!--                                products, at a price anyone can afford.</p>-->
-<!--                            <span class="time_date"> 11:01 AM    |    Today</span></div>-->
-<!--                    </div>-->
-<!--                </div>-->
             </div>
-            <div class="type_msg">
-                <div class="input_msg_write">
-                    <input id="message" type="text" class="write_msg" placeholder="Type a message" />
-                    <button id="send" class="msg_send_btn" type="button"><i class="fa fa-paper-plane-o" aria-hidden="true"></i></button>
-                </div>
             </div>
         </div>
-    </div>
 </div>
-</div>
-
-
-<div class="container">
-    <div class="input-fields">
-        <p>Type a message and hit send:</p>
-        <p>Select an image and hit send:</p>
-        <input type="file" id="file" accept="image/*"/>
-        <button id="sendImage">Send Image</button>
-    </div>
-</div>
+</body>
 <script>
-
-    const messageWindow = document.getElementById("messages");
-    const sendButton = document.getElementById("send");
-    const messageInput = document.getElementById("message");
-    const fileInput = document.getElementById("file");
-    const sendImageButton = document.getElementById("sendImage");
     const username = localStorage.getItem("user")
-
-    const group = new WebSocket("ws://localhost:8080/group");
-    const socket = new WebSocket("ws://localhost:8080/socket");
     const userGroups = new WebSocket("ws://localhost:8080/userGroups");
 
     userGroups.onopen = function (event) {
@@ -297,62 +239,5 @@
             $('#chat_list').append(html);
         }
     };
-
-    socket.binaryType = "arraybuffer";
-
-    group.onopen = function (event) {
-        const groupName = window.location.search;
-        group.send(groupName);
-    };
-
-    socket.onopen = function (event) {
-        addMessageToWindow("Connected");
-    };
-
-    socket.onmessage = function (event) {
-        if (event.data instanceof ArrayBuffer) {
-            addMessageToWindow('Got Image:');
-            addImageToWindow(event.data);
-        } else {
-            messageWindow.innerHTML +='<div class="incoming_msg"><div class="incoming_msg_img"><img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"></div><div class="received_msg"><div class="received_withd_msg"><p>' + event.data + '</p><span class="time_date"> 11:01 AM    |    June 9</span></div></div></div>'
-        }
-    };
-
-    group.onmessage = function (event) {
-        if (event.data instanceof ArrayBuffer) {
-<!--            addMessageToWindow('Got Image:');-->
-            addImageToWindow(event.data);
-        } else {
-            messageWindow.innerHTML +='<div class="incoming_msg"><div class="incoming_msg_img"><img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"></div><div class="received_msg"><div class="received_withd_msg"><p>' + event.data + '</p><span class="time_date"> 11:01 AM    |    June 9</span></div></div></div>'
-        }
-    };
-
-    sendButton.onclick = function (event) {
-        sendMessage(messageInput.value, 1);
-        messageInput.value = "";
-    };
-
-    function sendMessage(message) {
-        group.send(message);
-<!--        addMessageToWindow("Sent Message: " + message);-->
-    }
-
-<!--    function addMessageToWindow(message) {-->
-<!--        messageWindow.innerHTML +='<div class="incoming_msg"><div class="incoming_msg_img"><img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"></div><div class="received_msg"><div class="received_withd_msg"><p>' + message + '</p><span class="time_date"> 11:01 AM    |    June 9</span></div></div></div>'-->
-<!--        &lt;!&ndash;`<div>${message}</div>`&ndash;&gt;-->
-<!--    }-->
-
-
-    sendImageButton.onclick = function (event) {
-        let file = fileInput.files[0];
-        sendMessage(file);
-        fileInput.value = null;
-    };
-
-    function addImageToWindow(image) {
-        let url = URL.createObjectURL(new Blob([image]));
-        messageWindow.innerHTML += `<img src="${url}"/>`
-    }
 </script>
-</body>
 </html>

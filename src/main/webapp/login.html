@@ -2,13 +2,65 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Login</title>
+    <title>Corporativa</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 </head>
 <body>
 
-    <input type="text" id="username">
-    <input type="text" id="password">
-    <button type="submit">Login</button>
+    <div class="container">
 
+        <setion>
+            <div class="row justify-content-center">
+                <div class="col-md-6 col-sm-12">
+                    <div style="margin-top:300px" class="card">
+                        <div class="card-header">
+                            <h4>Comuniação Corporativa</h4>
+                        </div>
+                        <div class="card-body">
+                            <label>Username</label>
+                            <input type="text" id="username" class="form-control">
+
+                            <label style="margin-top:20px">Password</label>
+                            <input type="password" id="password" class="form-control">
+
+                        </div>
+                        <div class="card-footer">
+                            <div class="row justify-content-end">
+                                <div class="col-md-2 col-sm-8">
+                                    <button id="login-button" type="submit" class="btn btn-primary">Login</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </setion>
+    </div>
 </body>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<script src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
+<script>
+
+    const login = new WebSocket("ws://localhost:8080/login");
+
+    $('#login-button').on('click', function() {
+        var username = $('#username').val();
+        var password = $('#password').val();
+
+        var data = "'" + username + "''" + password + "'";
+        login.send(data)
+    });
+
+     login.onmessage = function (event) {
+        if(event.data == 'true'){
+            login.close();
+            localStorage.setItem("user", String($('#username').val()));
+            window.location.replace("http://localhost:8080/index.html");
+         }else{
+            alert('opa');
+         }
+    };
+</script>
+
 </html>

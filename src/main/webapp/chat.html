@@ -2,46 +2,306 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
     <style>
-        #messages {
-            text-align: left;
-            width: 50%;
-            padding: 1em;
-            border: 1px solid black;
-        }
+    .container{
+        max-width:1170px; margin:auto;}
+    img{ max-width:100%;}
+    .inbox_people {
+    background: #f8f8f8 none repeat scroll 0 0;
+    float: left;
+    overflow: hidden;
+    width: 40%; border-right:1px solid #c4c4c4;
+    }
+    .inbox_msg {
+    border: 1px solid #c4c4c4;
+    clear: both;
+    overflow: hidden;
+    }
+    .top_spac{ margin: 20px 0 0;}
+
+
+    .recent_heading {float: left; width:40%;}
+    .srch_bar {
+    display: inline-block;
+    text-align: right;
+    width: 60%; padding:
+    }
+    .headind_srch{ padding:10px 29px 10px 20px; overflow:hidden; border-bottom:1px solid #c4c4c4;}
+
+    .recent_heading h4 {
+    color: #05728f;
+    font-size: 21px;
+    margin: auto;
+    }
+    .srch_bar input{ border:1px solid #cdcdcd; border-width:0 0 1px 0; width:80%; padding:2px 0 4px 6px; background:none;}
+    .srch_bar .input-group-addon button {
+    background: rgba(0, 0, 0, 0) none repeat scroll 0 0;
+    border: medium none;
+    padding: 0;
+    color: #707070;
+    font-size: 18px;
+    }
+    .srch_bar .input-group-addon { margin: 0 0 0 -27px;}
+
+    .chat_ib h5{ font-size:15px; color:#464646; margin:0 0 8px 0;}
+    .chat_ib h5 span{ font-size:13px; float:right;}
+    .chat_ib p{ font-size:14px; color:#989898; margin:auto}
+    .chat_img {
+    float: left;
+    width: 11%;
+    }
+    .chat_ib {
+    float: left;
+    padding: 0 0 0 15px;
+    width: 88%;
+    }
+
+    .chat_people{ overflow:hidden; clear:both;}
+    .chat_list {
+    border-bottom: 1px solid #c4c4c4;
+    margin: 0;
+    padding: 18px 16px 10px;
+    }
+    .inbox_chat {height:100%; overflow-y: scroll;}
+
+    .active_chat{ background:#ebebeb;}
+
+    .incoming_msg_img {
+    display: inline-block;
+    width: 6%;
+    }
+    .received_msg {
+    display: inline-block;
+    padding: 0 0 0 10px;
+    vertical-align: top;
+    width: 92%;
+    }
+    .received_withd_msg p {
+    background: #ebebeb none repeat scroll 0 0;
+    border-radius: 3px;
+    color: #646464;
+    font-size: 14px;
+    margin: 0;
+    padding: 5px 10px 5px 12px;
+    width: 100%;
+    }
+    .time_date {
+    color: #747474;
+    display: block;
+    font-size: 12px;
+    margin: 8px 0 0;
+    }
+    .received_withd_msg { width: 57%;}
+    .mesgs {
+    float: left;
+    padding: 30px 15px 0 25px;
+    width: 60%;
+    }
+
+    .sent_msg p {
+    background: #05728f none repeat scroll 0 0;
+    border-radius: 3px;
+    font-size: 14px;
+    margin: 0; color:#fff;
+    padding: 5px 10px 5px 12px;
+    width:100%;
+    }
+    .outgoing_msg{ overflow:hidden; margin:26px 0 26px;}
+    .sent_msg {
+    float: right;
+    width: 46%;
+    }
+    .input_msg_write input {
+    background: rgba(0, 0, 0, 0) none repeat scroll 0 0;
+    border: medium none;
+    color: #4c4c4c;
+    font-size: 15px;
+    min-height: 48px;
+    width: 100%;
+    }
+
+    .type_msg {border-top: 1px solid #c4c4c4;position: relative;}
+    .msg_send_btn {
+    background: #05728f none repeat scroll 0 0;
+    border: medium none;
+    border-radius: 50%;
+    color: #fff;
+    cursor: pointer;
+    font-size: 17px;
+    height: 33px;
+    position: absolute;
+    right: 0;
+    top: 11px;
+    width: 33px;
+    }
+    .messaging { padding: 0 0 50px 0; height:100vh}
+    .msg_history {
+    height: 516px;
+    overflow-y: auto;
+    }
     </style>
+
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <!-- JS, Popper.js, and jQuery -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+    <title>Comunicação Corporativa</title>
+
 </head>
 <body>
+<div class="header">
+    <nav style="background-color:#525252 !important" class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="index.html"><img style="height:100px" src="https://duo2.com.br/wp-content/uploads/2019/07/logo_duo.png"></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li style="margin-left:15px" class="nav-item active">
+                    <a class="nav-link" href="index.html">Home</a>
+                </li>
+                <li style="margin-left:15px" class="nav-item active">
+                    <a class="nav-link" href="chats.html">Chats</a>
+                </li>
+                <li style="margin-left:15px" class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Grupos
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="#">Criar Grupo</a>
+                        <a class="dropdown-item" href="#">Remover Grupo</a>
+                        <a class="dropdown-item" href="#">Alterar Grupo</a>
+                        <a class="dropdown-item" href="#">Inserir Usuário em Grupo</a>
+                    </div>
+                </li>
+                <li style="margin-left:15px" class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown2" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Usuários
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="#">Criar Usuário</a>
+                        <a class="dropdown-item" href="#">Remover Usuário</a>
+                        <a class="dropdown-item" href="#">Alterar Usuário</a>
+                    </div>
+                </li>
+            </ul>
+            <form class="form-inline my-2 my-lg-0">
+                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            </form>
+        </div>
+    </nav>
+</div>
+<div class="messaging">
+    <div class="inbox_msg">
+        <div class="inbox_people">
+            <div class="headind_srch">
+                <div class="recent_heading">
+                    <h4>Recent</h4>
+                </div>
+                <div class="srch_bar">
+                    <div class="stylish-input-group">
+                        <input type="text" class="search-bar"  placeholder="Search" >
+                        <span class="input-group-addon">
+                                <button type="button"><i class="fa fa-search" aria-hidden="true"></i></button>
+                            </span>
+                    </div>
+                </div>
+            </div>
+            <div id="chat_list" class="inbox_chat">
+
+            </div>
+        </div>
+        <div class="mesgs">
+            <div class="msg_history">
+                <div id="messages">
+
+                </div>
+<!--                <div class="outgoing_msg">-->
+<!--                    <div class="sent_msg">-->
+<!--                        <p>Test which is a new approach to have all-->
+<!--                            solutions</p>-->
+<!--                        <span class="time_date"> 11:01 AM    |    June 9</span> </div>-->
+<!--                </div>-->
+<!--                <div class="incoming_msg">-->
+<!--                    <div class="incoming_msg_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>-->
+<!--                    <div class="received_msg">-->
+<!--                        <div class="received_withd_msg">-->
+<!--                            <p>Test, which is a new approach to have</p>-->
+<!--                            <span class="time_date"> 11:01 AM    |    Yesterday</span></div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <div class="outgoing_msg">-->
+<!--                    <div class="sent_msg">-->
+<!--                        <p>Apollo University, Delhi, India Test</p>-->
+<!--                        <span class="time_date"> 11:01 AM    |    Today</span> </div>-->
+<!--                </div>-->
+<!--                <div class="incoming_msg">-->
+<!--                    <div class="incoming_msg_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>-->
+<!--                    <div class="received_msg">-->
+<!--                        <div class="received_withd_msg">-->
+<!--                            <p>We work directly with our designers and suppliers,-->
+<!--                                and sell direct to you, which means quality, exclusive-->
+<!--                                products, at a price anyone can afford.</p>-->
+<!--                            <span class="time_date"> 11:01 AM    |    Today</span></div>-->
+<!--                    </div>-->
+<!--                </div>-->
+            </div>
+            <div class="type_msg">
+                <div class="input_msg_write">
+                    <input id="message" type="text" class="write_msg" placeholder="Type a message" />
+                    <button id="send" class="msg_send_btn" type="button"><i class="fa fa-paper-plane-o" aria-hidden="true"></i></button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+
 <div class="container">
-    <div id="messages" class="messages"></div>
     <div class="input-fields">
         <p>Type a message and hit send:</p>
-        <input id="message"/>
-        <button id="send">Send</button>
-
         <p>Select an image and hit send:</p>
         <input type="file" id="file" accept="image/*"/>
-
         <button id="sendImage">Send Image</button>
     </div>
 </div>
 <script>
-    const groupName = 'COM242';
-    const messageWindow = document.getElementById("messages");
 
+    const messageWindow = document.getElementById("messages");
     const sendButton = document.getElementById("send");
     const messageInput = document.getElementById("message");
-
     const fileInput = document.getElementById("file");
     const sendImageButton = document.getElementById("sendImage");
+    const username = localStorage.getItem("user")
 
     const group = new WebSocket("ws://localhost:8080/group");
     const socket = new WebSocket("ws://localhost:8080/socket");
+    const userGroups = new WebSocket("ws://localhost:8080/userGroups");
+
+    userGroups.onopen = function (event) {
+         userGroups.send(username)
+    };
+
+    userGroups.onmessage = function (event) {
+        var groups = event.data.split(" ");
+        for(let i = 0; i < groups.length - 1;i++){
+            var html = '<div class="chat_list"><div class="chat_people chats" data-chat="' + groups[i] + '"><a href="chat.html?'  + groups[i] +  '">' + groups[i] + '</a></div></div>';
+            $('#chat_list').append(html);
+        }
+    };
 
     socket.binaryType = "arraybuffer";
 
     group.onopen = function (event) {
+        const groupName = window.location.search;
         group.send(groupName);
     };
 
@@ -54,16 +314,16 @@
             addMessageToWindow('Got Image:');
             addImageToWindow(event.data);
         } else {
-            addMessageToWindow(`Got Message: ${event.data}`);
+            messageWindow.innerHTML +='<div class="incoming_msg"><div class="incoming_msg_img"><img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"></div><div class="received_msg"><div class="received_withd_msg"><p>' + event.data + '</p><span class="time_date"> 11:01 AM    |    June 9</span></div></div></div>'
         }
     };
 
     group.onmessage = function (event) {
         if (event.data instanceof ArrayBuffer) {
-            addMessageToWindow('Got Image:');
+<!--            addMessageToWindow('Got Image:');-->
             addImageToWindow(event.data);
         } else {
-            addMessageToWindow(`Got Message: ${event.data}`);
+            messageWindow.innerHTML +='<div class="incoming_msg"><div class="incoming_msg_img"><img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"></div><div class="received_msg"><div class="received_withd_msg"><p>' + event.data + '</p><span class="time_date"> 11:01 AM    |    June 9</span></div></div></div>'
         }
     };
 
@@ -73,14 +333,14 @@
     };
 
     function sendMessage(message) {
-        console.log(message)
         group.send(message);
-        addMessageToWindow("Sent Message: " + message);
+<!--        addMessageToWindow("Sent Message: " + message);-->
     }
 
-    function addMessageToWindow(message) {
-        messageWindow.innerHTML += `<div>${message}</div>`
-    }
+<!--    function addMessageToWindow(message) {-->
+<!--        messageWindow.innerHTML +='<div class="incoming_msg"><div class="incoming_msg_img"><img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"></div><div class="received_msg"><div class="received_withd_msg"><p>' + message + '</p><span class="time_date"> 11:01 AM    |    June 9</span></div></div></div>'-->
+<!--        &lt;!&ndash;`<div>${message}</div>`&ndash;&gt;-->
+<!--    }-->
 
 
     sendImageButton.onclick = function (event) {

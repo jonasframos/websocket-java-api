@@ -1,5 +1,6 @@
 <html>
 <head>
+    <meta charset="UTF-8">
     <style>
         #messages {
             text-align: left;
@@ -9,15 +10,75 @@
         }
     </style>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <title>Sample WebSocket Client</title>
+    <!-- JS, Popper.js, and jQuery -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+    <title>Comunicação Corporativa</title>
 </head>
 <body>
-<a href="login.html">Login</a>
-<a href="chat.html">Chat</a>
 
-<div>
+<div class="header">
+    <nav style="background-color:#525252 !important" class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="index.html"><img style="height:100px" src="https://duo2.com.br/wp-content/uploads/2019/07/logo_duo.png"></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li style="margin-left:15px" class="nav-item active">
+                    <a class="nav-link" href="index.html">Home</a>
+                </li>
+                <li style="margin-left:15px" class="nav-item active">
+                    <a class="nav-link" href="chats.html">Chats</a>
+                </li>
+                <li style="margin-left:15px" class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Grupos
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="#">Criar Grupo</a>
+                        <a class="dropdown-item" href="#">Remover Grupo</a>
+                        <a class="dropdown-item" href="#">Alterar Grupo</a>
+                        <a class="dropdown-item" href="#">Inserir Usuário em Grupo</a>
+                    </div>
+                </li>
+                <li style="margin-left:15px" class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown2" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Usuários
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="#">Criar Usuário</a>
+                        <a class="dropdown-item" href="#">Remover Usuário</a>
+                        <a class="dropdown-item" href="#">Alterar Usuário</a>
+                    </div>
+                </li>
+            </ul>
+            <form class="form-inline my-2 my-lg-0">
+                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            </form>
+        </div>
+    </nav>
+</div>
+
+<div class="row justify-content-left">
 
 </div>
 
-</body>
+</body>chat
+
+<script>
+    const username = localStorage.getItem("user")
+    const userGroups = new WebSocket("ws://localhost:8080/userGroups");
+
+    userGroups.onopen = function (event) {
+         userGroups.send(username)
+    };
+
+     userGroups.onmessage = function (event) {
+        var groups = event.data.split(" ");
+    };
+</script>
 </html>

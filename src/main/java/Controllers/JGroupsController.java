@@ -102,7 +102,7 @@ public class JGroupsController implements Receiver {
         System.out.println(list.size() + " mensagens no histórico do grupo");
         for (int i = 0; i < list.size(); i++) {
             String s = (String) list.get(i);
-            this.userSession.getBasicRemote().sendText(s);
+            //this.userSession.getBasicRemote().sendText(s);
         }
         System.out.println("----------------------------------------------------------------------------------------");
     }
@@ -158,7 +158,6 @@ public class JGroupsController implements Receiver {
 
             System.out.println("Conectando...");
             System.out.println("Bem-vindo ao grupo!");
-            //listening();
 
         }catch(Exception e){
             System.out.println("Não foi possível conectar ao grupo devido ao erro:\n");
@@ -170,23 +169,19 @@ public class JGroupsController implements Receiver {
 
     @OnMessage
     public String onMessage(String message) throws Exception {
-//        if (!inGroup) {
-//            System.out.println("inGroup");
-//            connectToGroup(message);
-//        } else if(message.startsWith("/RECEIVED")) {
-//            return message;
-//        } else {
-            System.out.println("New Text Message Received");
-            this.sendMessage(message);
-            return message;
-        //}
-        //return "";
+        System.out.println("New Text Message Received");
+        this.sendMessage(message);
+        return message;
     }
 
     @OnOpen
-    public void onOpen(Session session) throws Exception {
+    public void onOpenSession(Session session) throws Exception {
         this.userSession = session;
-        connectToGroup("COM242");
     }
 
+    @OnOpen
+    public void onOpen(String groupName) throws Exception {
+        connectToGroup(groupName);
+        this.userSession = request.getSession(true);
+    }
 }
