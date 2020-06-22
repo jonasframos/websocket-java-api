@@ -156,44 +156,43 @@
 <body>
 <div class="header">
     <nav style="background-color:#525252 !important" class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <a class="navbar-brand" href="index.html"><img style="height:100px" src="https://duo2.com.br/wp-content/uploads/2019/07/logo_duo.png"></a>
+        <div>
+            <div class="row">
+                <a class="navbar-brand" href="index.html"><img style="height:100px" src="https://duo2.com.br/wp-content/uploads/2019/07/logo_duo.png"></a>
+            </div>
+        </div>
+
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
                 <li style="margin-left:15px" class="nav-item active">
                     <a class="nav-link" href="index.html">Home</a>
                 </li>
-                <li style="margin-left:15px" class="nav-item active">
+                <li style="margin-left:15px" class="nav-item">
                     <a class="nav-link" href="chats.html">Chats</a>
                 </li>
                 <li style="margin-left:15px" class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <a class="nav-link dropdown-toggle" href="groups.html" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Grupos
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="#">Criar Grupo</a>
-                        <a class="dropdown-item" href="#">Remover Grupo</a>
-                        <a class="dropdown-item" href="#">Alterar Grupo</a>
-                        <a class="dropdown-item" href="#">Inserir Usuário em Grupo</a>
-                    </div>
-                </li>
-                <li style="margin-left:15px" class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown2" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Usuários
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="#">Criar Usuário</a>
-                        <a class="dropdown-item" href="#">Remover Usuário</a>
-                        <a class="dropdown-item" href="#">Alterar Usuário</a>
+                        <a class="dropdown-item" href="groups.html">Criar Grupo</a>
+                        <a class="dropdown-item" href="groups.html">Remover Grupo</a>
+                        <a class="dropdown-item" href="groups.html">Alterar Grupo</a>
+                        <a class="dropdown-item" href="groups.html">Inserir Usuário em Grupo</a>
                     </div>
                 </li>
             </ul>
             <form class="form-inline my-2 my-lg-0">
-                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                <div style="padding:20px" class="row">
+                    <img style="height:30px; border-radius:51%" src="https://lh3.googleusercontent.com/proxy/xYq15OmjvpNy6Lw0jmXfqU-M73FMt3AvIkmjxZzyB6EhwWTa6CEZAK3OXot1IYIHHy2BNed9mhgNvkPnFdvBMJ9rNer9aCoFM4cw-cL-Tsh9d74sR0T_lrnVoAHebKU2e931LQ">
+                    <span style="margin-right:20px;margin-left:5px; color:white; font-size:20px;" id="logged_name"></span>
+                    <img style="height:10px; border-radius:100%; margin-top:10px;margin-right:20px" src="https://www.pngkey.com/png/detail/339-3392637_green-glossy-ball-green-online-icon-png.png">
+                </div>
+                <input class="form-control mr-sm-2" type="search" placeholder="Procurar" aria-label="Search">
+                <button class="btn btn-primary my-2 my-sm-0" type="submit">Procurar</button>
             </form>
         </div>
     </nav>
@@ -203,11 +202,11 @@
         <div class="inbox_people">
             <div class="headind_srch">
                 <div class="recent_heading">
-                    <h4>Recent</h4>
+                    <h4>Chats</h4>
                 </div>
                 <div class="srch_bar">
                     <div class="stylish-input-group">
-                        <input type="text" class="search-bar"  placeholder="Search" >
+                        <input type="text" class="search-bar"  placeholder="Procurar" >
                         <span class="input-group-addon">
                                 <button type="button"><i class="fa fa-search" aria-hidden="true"></i></button>
                             </span>
@@ -223,40 +222,11 @@
                 <div id="messages">
 
                 </div>
-<!--                <div class="outgoing_msg">-->
-<!--                    <div class="sent_msg">-->
-<!--                        <p>Test which is a new approach to have all-->
-<!--                            solutions</p>-->
-<!--                        <span class="time_date"> 11:01 AM    |    June 9</span> </div>-->
-<!--                </div>-->
-<!--                <div class="incoming_msg">-->
-<!--                    <div class="incoming_msg_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>-->
-<!--                    <div class="received_msg">-->
-<!--                        <div class="received_withd_msg">-->
-<!--                            <p>Test, which is a new approach to have</p>-->
-<!--                            <span class="time_date"> 11:01 AM    |    Yesterday</span></div>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--                <div class="outgoing_msg">-->
-<!--                    <div class="sent_msg">-->
-<!--                        <p>Apollo University, Delhi, India Test</p>-->
-<!--                        <span class="time_date"> 11:01 AM    |    Today</span> </div>-->
-<!--                </div>-->
-<!--                <div class="incoming_msg">-->
-<!--                    <div class="incoming_msg_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>-->
-<!--                    <div class="received_msg">-->
-<!--                        <div class="received_withd_msg">-->
-<!--                            <p>We work directly with our designers and suppliers,-->
-<!--                                and sell direct to you, which means quality, exclusive-->
-<!--                                products, at a price anyone can afford.</p>-->
-<!--                            <span class="time_date"> 11:01 AM    |    Today</span></div>-->
-<!--                    </div>-->
-<!--                </div>-->
             </div>
             <div class="type_msg">
                 <div class="input_msg_write">
-                    <input id="message" type="text" class="write_msg" placeholder="Type a message" />
-                    <button id="send" class="msg_send_btn" type="button"><i class="fa fa-paper-plane-o" aria-hidden="true"></i></button>
+                    <input id="message" type="text" class="write_msg" placeholder="Escreva sua mensagem" />
+                    <button id="send" class="msg_send_btn" type="button"></button>
                 </div>
             </div>
         </div>
@@ -265,14 +235,14 @@
 </div>
 
 
-<div class="container">
-    <div class="input-fields">
-        <p>Type a message and hit send:</p>
-        <p>Select an image and hit send:</p>
-        <input type="file" id="file" accept="image/*"/>
-        <button id="sendImage">Send Image</button>
-    </div>
-</div>
+<!--<div class="container">-->
+<!--    <div class="input-fields">-->
+<!--        <p>Type a message and hit send:</p>-->
+<!--        <p>Select an image and hit send:</p>-->
+<!--        <input type="file" id="file" accept="image/*"/>-->
+<!--        <button id="sendImage">Send Image</button>-->
+<!--    </div>-->
+<!--</div>-->
 <script>
 
     const messageWindow = document.getElementById("messages");
@@ -286,6 +256,29 @@
     const socket = new WebSocket("ws://localhost:8080/socket");
     const userGroups = new WebSocket("ws://localhost:8080/userGroups");
 
+    $('#logged_name').text(username);
+
+     function getTimeNow(){
+        var d = new Date();
+        var m = d.getMinutes();
+        var h = d.getHours();
+
+        if(m < 10){
+          m = '0' + m;
+        }
+        if(h > 12){
+          h -= 12;
+          if(h < 10){
+            h = '0' + h;
+          }
+        }
+        else if(h < 10){
+          h = '0' + h;
+        }
+
+        return h + ":" + m
+      }
+
     userGroups.onopen = function (event) {
          userGroups.send(username)
     };
@@ -298,61 +291,47 @@
         }
     };
 
-    socket.binaryType = "arraybuffer";
-
     group.onopen = function (event) {
         const groupName = window.location.search;
-        group.send(groupName);
-    };
-
-    socket.onopen = function (event) {
-        addMessageToWindow("Connected");
-    };
-
-    socket.onmessage = function (event) {
-        if (event.data instanceof ArrayBuffer) {
-            addMessageToWindow('Got Image:');
-            addImageToWindow(event.data);
-        } else {
-            messageWindow.innerHTML +='<div class="incoming_msg"><div class="incoming_msg_img"><img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"></div><div class="received_msg"><div class="received_withd_msg"><p>' + event.data + '</p><span class="time_date"> 11:01 AM    |    June 9</span></div></div></div>'
-        }
+        group.send("[GROUP_NAME]" + groupName);
     };
 
     group.onmessage = function (event) {
-        if (event.data instanceof ArrayBuffer) {
-<!--            addMessageToWindow('Got Image:');-->
-            addImageToWindow(event.data);
-        } else {
-            messageWindow.innerHTML +='<div class="incoming_msg"><div class="incoming_msg_img"><img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"></div><div class="received_msg"><div class="received_withd_msg"><p>' + event.data + '</p><span class="time_date"> 11:01 AM    |    June 9</span></div></div></div>'
+        if(event.data != '[CONEXION]'){
+            var msg = event.data.split("'");
+
+            if(msg[1] == username + ":"){
+              messageWindow.innerHTML +='<div class="outgoing_msg"><div class="sent_msg"><p>' + msg[2] + '</p><span class="time_date">' + msg[0] + '</span> </div></div>';
+            }else{
+              messageWindow.innerHTML +='<div class="incoming_msg" style="margin-bottom:15px !important"><div class="incoming_msg_img"><img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"></div><div class="received_msg"><div class="received_withd_msg"><p>' + msg[1] + " " + msg[2] + '</p><span class="time_date">' + msg[0] + '</span></div></div></div>'
+            }
         }
     };
 
     sendButton.onclick = function (event) {
-        sendMessage(messageInput.value, 1);
+        var message = $('#message').val();
+        if(message ==  ""){
+            return;
+        }
+        var data = getTimeNow() + "'" + username + ":'" + message;
+        sendMessage(data, 1);
         messageInput.value = "";
     };
 
     function sendMessage(message) {
         group.send(message);
-<!--        addMessageToWindow("Sent Message: " + message);-->
     }
 
-<!--    function addMessageToWindow(message) {-->
-<!--        messageWindow.innerHTML +='<div class="incoming_msg"><div class="incoming_msg_img"><img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"></div><div class="received_msg"><div class="received_withd_msg"><p>' + message + '</p><span class="time_date"> 11:01 AM    |    June 9</span></div></div></div>'-->
-<!--        &lt;!&ndash;`<div>${message}</div>`&ndash;&gt;-->
+<!--    sendImageButton.onclick = function (event) {-->
+<!--        let file = fileInput.files[0];-->
+<!--        sendMessage(file);-->
+<!--        fileInput.value = null;-->
+<!--    };-->
+
+<!--    function addImageToWindow(image) {-->
+<!--        let url = URL.createObjectURL(new Blob([image]));-->
+<!--        messageWindow.innerHTML += `<img src="${url}"/>`-->
 <!--    }-->
-
-
-    sendImageButton.onclick = function (event) {
-        let file = fileInput.files[0];
-        sendMessage(file);
-        fileInput.value = null;
-    };
-
-    function addImageToWindow(image) {
-        let url = URL.createObjectURL(new Blob([image]));
-        messageWindow.innerHTML += `<img src="${url}"/>`
-    }
 </script>
 </body>
 </html>

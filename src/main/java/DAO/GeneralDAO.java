@@ -20,6 +20,23 @@ public class GeneralDAO {
     static final String user = "postgres";
     static final String password = "postgres";
 
+    public static ArrayList getGroupsAdmin(){
+        ArrayList groups = new ArrayList();
+
+        try{
+            Connection conn = connect();
+            Statement st = conn.createStatement();
+            ResultSet rs = st.executeQuery("SELECT name FROM groups");
+            while(rs.next()){
+                groups.add(rs.getString(1));
+            }
+
+        }catch(Exception e){
+            System.out.println(e);
+        }
+        return groups;
+    }
+
     public static ArrayList getGroups(String user){
         ArrayList groups = new ArrayList();
 

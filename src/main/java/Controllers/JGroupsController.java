@@ -71,8 +71,9 @@ public class JGroupsController implements Receiver {
     }
 
     public void receive(Message msg){
+        //msg.getSrc() + ": " +
 
-        String line = msg.getSrc() + ": " + msg.getObject();
+        String line = msg.getObject();
         System.out.println(line);
         try {
             this.userSession.getBasicRemote().sendText(line);
@@ -102,7 +103,7 @@ public class JGroupsController implements Receiver {
         System.out.println(list.size() + " mensagens no histórico do grupo");
         for (int i = 0; i < list.size(); i++) {
             String s = (String) list.get(i);
-            //this.userSession.getBasicRemote().sendText(s);
+            this.userSession.getBasicRemote().sendText(s);
         }
         System.out.println("----------------------------------------------------------------------------------------");
     }
@@ -169,19 +170,17 @@ public class JGroupsController implements Receiver {
 
     @OnMessage
     public String onMessage(String message) throws Exception {
-        System.out.println("New Text Message Received");
-        this.sendMessage(message);
-        return message;
+        if(message.startsWith("[GROUP_NAME]")){
+            connectToGroup(message);
+            return "[CONEXION]";
+        }else{
+            this.sendMessage(message);
+            return message;
+        }
     }
 
     @OnOpen
-    public void onOpenSession(Session session) throws Exception {
+    public void onOpen(Session session) throws Exception {
         this.userSession = session;
-    }
-
-    @OnOpen
-    public void onOpen(String groupName) throws Exception {
-        connectToGroup(groupName);
-        this.userSession = request.getSession(true);
     }
 }
